@@ -131,7 +131,7 @@ func AddInputResource(
 func getResource(r *v1alpha1.TaskResourceBinding, getter GetResource) (*v1alpha1.PipelineResource, error) {
 	// Check both resource ref or resource Spec are not present. Taskrun webhook should catch this in validation error.
 	if r.ResourceRef.Name != "" && r.ResourceSpec != nil {
-		return nil, xerrors.New("Both ResourseRef and ResourceSpec are defined. Expected only one")
+		return nil, xerrors.New("Both ResourceRef and ResourceSpec are defined. Expected only one")
 	}
 
 	if r.ResourceRef.Name != "" {
@@ -145,7 +145,7 @@ func getResource(r *v1alpha1.TaskResourceBinding, getter GetResource) (*v1alpha1
 			Spec: *r.ResourceSpec,
 		}, nil
 	}
-	return nil, xerrors.New("Neither ResourseRef not ResourceSpec is defined")
+	return nil, xerrors.New("Neither ResourceRef not ResourceSpec is defined")
 }
 
 func destinationPath(name, path string) string {
