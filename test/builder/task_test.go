@@ -186,7 +186,7 @@ func TestTaskRunWithTaskRef(t *testing.T) {
 		},
 		Spec: v1alpha1.TaskRunSpec{
 			Inputs: v1alpha1.TaskRunInputs{
-				Resources: []v1alpha1.TaskResourceBinding{{
+				Resources: []v1alpha1.ResourceBinding{{
 					Name: "git-resource",
 					ResourceRef: v1alpha1.PipelineResourceRef{
 						Name:       "my-git",
@@ -207,7 +207,7 @@ func TestTaskRunWithTaskRef(t *testing.T) {
 				}},
 			},
 			Outputs: v1alpha1.TaskRunOutputs{
-				Resources: []v1alpha1.TaskResourceBinding{{
+				Resources: []v1alpha1.ResourceBinding{{
 					Name: "git-resource",
 					ResourceRef: v1alpha1.PipelineResourceRef{
 						Name: "git-resource",

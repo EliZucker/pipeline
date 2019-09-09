@@ -120,7 +120,7 @@ func TestValidOutputResources(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Inputs: v1alpha1.TaskRunInputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-git",
@@ -128,7 +128,7 @@ func TestValidOutputResources(t *testing.T) {
 					}},
 				},
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-git",
@@ -198,7 +198,7 @@ func TestValidOutputResources(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-git",
@@ -261,7 +261,7 @@ func TestValidOutputResources(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-image",
@@ -303,7 +303,7 @@ func TestValidOutputResources(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-git",
@@ -347,7 +347,7 @@ func TestValidOutputResources(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Inputs: v1alpha1.TaskRunInputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-gcs",
@@ -355,7 +355,7 @@ func TestValidOutputResources(t *testing.T) {
 					}},
 				},
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-gcs",
@@ -438,7 +438,7 @@ func TestValidOutputResources(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-gcs",
@@ -508,7 +508,7 @@ func TestValidOutputResources(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-gcs",
@@ -566,7 +566,7 @@ func TestValidOutputResources(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-gcs",
@@ -627,7 +627,7 @@ func TestValidOutputResources(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-image",
@@ -671,7 +671,7 @@ func TestValidOutputResources(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-image",
@@ -711,7 +711,7 @@ func TestValidOutputResources(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-image",
@@ -798,7 +798,7 @@ func TestValidOutputResourcesWithBucketStorage(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Inputs: v1alpha1.TaskRunInputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-git",
@@ -806,7 +806,7 @@ func TestValidOutputResourcesWithBucketStorage(t *testing.T) {
 					}},
 				},
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-git",
@@ -863,7 +863,7 @@ func TestValidOutputResourcesWithBucketStorage(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-git",
@@ -909,7 +909,7 @@ func TestValidOutputResourcesWithBucketStorage(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-git",
@@ -1021,7 +1021,7 @@ func TestInvalidOutputResources(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "source-gcs",
@@ -1069,7 +1069,7 @@ func TestInvalidOutputResources(t *testing.T) {
 			},
 			Spec: v1alpha1.TaskRunSpec{
 				Outputs: v1alpha1.TaskRunOutputs{
-					Resources: []v1alpha1.TaskResourceBinding{{
+					Resources: []v1alpha1.ResourceBinding{{
 						Name: "source-workspace",
 						ResourceRef: v1alpha1.PipelineResourceRef{
 							Name: "invalid-source-storage",

@@ -23,11 +23,11 @@ import (
 )
 
 // GetOutputSteps will add the correct `path` to the input resources for pt
-func GetOutputSteps(outputs map[string]*v1alpha1.PipelineResource, taskName, storageBasePath string) []v1alpha1.TaskResourceBinding {
-	var taskOutputResources []v1alpha1.TaskResourceBinding
+func GetOutputSteps(outputs map[string]*v1alpha1.PipelineResource, taskName, storageBasePath string) []v1alpha1.ResourceBinding {
+	var taskOutputResources []v1alpha1.ResourceBinding
 
 	for name, outputResource := range outputs {
-		taskOutputResources = append(taskOutputResources, v1alpha1.TaskResourceBinding{
+		taskOutputResources = append(taskOutputResources, v1alpha1.ResourceBinding{
 			Name: name,
 			ResourceRef: v1alpha1.PipelineResourceRef{
 				Name:       outputResource.Name,
@@ -41,11 +41,11 @@ func GetOutputSteps(outputs map[string]*v1alpha1.PipelineResource, taskName, sto
 
 // GetInputSteps will add the correct `path` to the input resources for pt. If the resources are provided by
 // a previous task, the correct `path` will be used so that the resource provided by that task will be used.
-func GetInputSteps(inputs map[string]*v1alpha1.PipelineResource, pt *v1alpha1.PipelineTask, storageBasePath string) []v1alpha1.TaskResourceBinding {
-	var taskInputResources []v1alpha1.TaskResourceBinding
+func GetInputSteps(inputs map[string]*v1alpha1.PipelineResource, pt *v1alpha1.PipelineTask, storageBasePath string) []v1alpha1.ResourceBinding {
+	var taskInputResources []v1alpha1.ResourceBinding
 
 	for name, inputResource := range inputs {
-		taskInputResource := v1alpha1.TaskResourceBinding{
+		taskInputResource := v1alpha1.ResourceBinding{
 			Name: name,
 			ResourceRef: v1alpha1.PipelineResourceRef{
 				Name:       inputResource.Name,

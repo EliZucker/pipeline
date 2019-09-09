@@ -288,7 +288,7 @@ func TestResolvedConditionCheck_ToTaskResourceBindings(t *testing.T) {
 		},
 	}
 
-	expected := []v1alpha1.TaskResourceBinding{{
+	expected := []v1alpha1.ResourceBinding{{
 		Name: "git-resource",
 		ResourceRef: v1alpha1.PipelineResourceRef{
 			Name: "some-repo",

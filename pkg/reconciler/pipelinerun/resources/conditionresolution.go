@@ -170,11 +170,11 @@ func (rcc *ResolvedConditionCheck) NewConditionCheckStatus() *v1alpha1.Condition
 	}
 }
 
-func (rcc *ResolvedConditionCheck) ToTaskResourceBindings() []v1alpha1.TaskResourceBinding {
-	var trb []v1alpha1.TaskResourceBinding
+func (rcc *ResolvedConditionCheck) ToTaskResourceBindings() []v1alpha1.ResourceBinding {
+	var trb []v1alpha1.ResourceBinding
 
 	for name, r := range rcc.ResolvedResources {
-		trb = append(trb, v1alpha1.TaskResourceBinding{
+		trb = append(trb, v1alpha1.ResourceBinding{
 			Name: name,
 			ResourceRef: v1alpha1.PipelineResourceRef{
 				Name:       r.Name,

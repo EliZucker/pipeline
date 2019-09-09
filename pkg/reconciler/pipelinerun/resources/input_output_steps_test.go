@@ -42,12 +42,12 @@ func TestGetOutputSteps(t *testing.T) {
 	tcs := []struct {
 		name                       string
 		outputs                    map[string]*v1alpha1.PipelineResource
-		expectedtaskOuputResources []v1alpha1.TaskResourceBinding
+		expectedtaskOuputResources []v1alpha1.ResourceBinding
 		pipelineTaskName           string
 	}{{
 		name:    "single output",
 		outputs: map[string]*v1alpha1.PipelineResource{"test-output": r1},
-		expectedtaskOuputResources: []v1alpha1.TaskResourceBinding{{
+		expectedtaskOuputResources: []v1alpha1.ResourceBinding{{
 			Name:        "test-output",
 			ResourceRef: v1alpha1.PipelineResourceRef{Name: "resource1"},
 			Paths:       []string{"/pvc/test-taskname/test-output"},
@@ -59,7 +59,7 @@ func TestGetOutputSteps(t *testing.T) {
 			"test-output":   r1,
 			"test-output-2": r2,
 		},
-		expectedtaskOuputResources: []v1alpha1.TaskResourceBinding{{
+		expectedtaskOuputResources: []v1alpha1.ResourceBinding{{
 			Name:        "test-output",
 			ResourceRef: v1alpha1.PipelineResourceRef{Name: "resource1"},
 			Paths:       []string{"/pvc/test-multiple-outputs/test-output"},
@@ -91,7 +91,7 @@ func TestGetInputSteps(t *testing.T) {
 		name                       string
 		inputs                     map[string]*v1alpha1.PipelineResource
 		pipelineTask               *v1alpha1.PipelineTask
-		expectedtaskInputResources []v1alpha1.TaskResourceBinding
+		expectedtaskInputResources []v1alpha1.ResourceBinding
 	}{
 		{
 			name:   "task-with-a-constraint",
@@ -104,7 +104,7 @@ func TestGetInputSteps(t *testing.T) {
 					}},
 				},
 			},
-			expectedtaskInputResources: []v1alpha1.TaskResourceBinding{{
+			expectedtaskInputResources: []v1alpha1.ResourceBinding{{
 				ResourceRef: v1alpha1.PipelineResourceRef{Name: "resource1"},
 				Name:        "test-input",
 				Paths:       []string{"/pvc/prev-task-1/test-input"},
@@ -112,7 +112,7 @@ func TestGetInputSteps(t *testing.T) {
 		}, {
 			name:   "task-with-no-input-constraint",
 			inputs: map[string]*v1alpha1.PipelineResource{"test-input": r1},
-			expectedtaskInputResources: []v1alpha1.TaskResourceBinding{{
+			expectedtaskInputResources: []v1alpha1.ResourceBinding{{
 				ResourceRef: v1alpha1.PipelineResourceRef{Name: "resource1"},
 				Name:        "test-input",
 			}},
@@ -130,7 +130,7 @@ func TestGetInputSteps(t *testing.T) {
 					}},
 				},
 			},
-			expectedtaskInputResources: []v1alpha1.TaskResourceBinding{{
+			expectedtaskInputResources: []v1alpha1.ResourceBinding{{
 				ResourceRef: v1alpha1.PipelineResourceRef{Name: "resource1"},
 				Name:        "test-input",
 				Paths:       []string{"/pvc/prev-task-1/test-input", "/pvc/prev-task-2/test-input"},
@@ -176,7 +176,7 @@ func TestWrapSteps(t *testing.T) {
 	taskRunSpec := &v1alpha1.TaskRunSpec{}
 	resources.WrapSteps(taskRunSpec, pt, inputs, outputs, pvcDir)
 
-	expectedtaskInputResources := []v1alpha1.TaskResourceBinding{{
+	expectedtaskInputResources := []v1alpha1.ResourceBinding{{
 		ResourceRef: v1alpha1.PipelineResourceRef{Name: "resource1"},
 		Name:        "test-input",
 		Paths:       []string{"/pvc/prev-task/test-input"},
@@ -184,7 +184,7 @@ func TestWrapSteps(t *testing.T) {
 		ResourceRef: v1alpha1.PipelineResourceRef{Name: "resource1"},
 		Name:        "test-input-2",
 	}}
-	expectedtaskOuputResources := []v1alpha1.TaskResourceBinding{{
+	expectedtaskOuputResources := []v1alpha1.ResourceBinding{{
 		ResourceRef: v1alpha1.PipelineResourceRef{Name: "resource1"},
 		Name:        "test-output",
 		Paths:       []string{"/pvc/test-task/test-output"},
@@ -193,10 +193,10 @@ func TestWrapSteps(t *testing.T) {
 	sort.SliceStable(expectedtaskInputResources, func(i, j int) bool { return expectedtaskInputResources[i].Name < expectedtaskInputResources[j].Name })
 	sort.SliceStable(expectedtaskOuputResources, func(i, j int) bool { return expectedtaskOuputResources[i].Name < expectedtaskOuputResources[j].Name })
 
-	if d := cmp.Diff(taskRunSpec.Inputs.Resources, expectedtaskInputResources, cmpopts.SortSlices(func(x, y v1alpha1.TaskResourceBinding) bool { return x.Name < y.Name })); d != "" {
+	if d := cmp.Diff(taskRunSpec.Inputs.Resources, expectedtaskInputResources, cmpopts.SortSlices(func(x, y v1alpha1.ResourceBinding) bool { return x.Name < y.Name })); d != "" {
 		t.Errorf("error comparing input resources: %s", d)
 	}
-	if d := cmp.Diff(taskRunSpec.Outputs.Resources, expectedtaskOuputResources, cmpopts.SortSlices(func(x, y v1alpha1.TaskResourceBinding) bool { return x.Name < y.Name })); d != "" {
+	if d := cmp.Diff(taskRunSpec.Outputs.Resources, expectedtaskOuputResources, cmpopts.SortSlices(func(x, y v1alpha1.ResourceBinding) bool { return x.Name < y.Name })); d != "" {
 		t.Errorf("error comparing output resources: %s", d)
 	}
 }

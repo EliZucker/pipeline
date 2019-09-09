@@ -46,7 +46,7 @@ type PipelineRunSpec struct {
 	// Resources is a list of bindings specifying which actual instances of
 	// PipelineResources to use for the resources the Pipeline has declared
 	// it needs.
-	Resources []PipelineResourceBinding `json:"resources,omitempty"`
+	Resources []ResourceBinding `json:"resources,omitempty"`
 	// Params is a list of parameter names and values.
 	Params []Param `json:"params,omitempty"`
 	// +optional

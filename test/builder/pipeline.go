@@ -44,8 +44,8 @@ type PipelineRunSpecOp func(*v1alpha1.PipelineRunSpec)
 // PipelineResourceOp is an operation which modify a PipelineResource struct.
 type PipelineResourceOp func(*v1alpha1.PipelineResource)
 
-// PipelineResourceBindingOp is an operation which modify a PipelineResourceBinding struct.
-type PipelineResourceBindingOp func(*v1alpha1.PipelineResourceBinding)
+// PipelineResourceBindingOp is an operation which modify a ResourceBinding struct.
+type PipelineResourceBindingOp func(*v1alpha1.ResourceBinding)
 
 // PipelineResourceSpecOp is an operation which modify a PipelineResourceSpec struct.
 type PipelineResourceSpecOp func(*v1alpha1.PipelineResourceSpec)
@@ -317,7 +317,7 @@ func PipelineRunAnnotation(key, value string) PipelineRunOp {
 // PipelineRunResourceBinding adds bindings from actual instances to a Pipeline's declared resources.
 func PipelineRunResourceBinding(name string, ops ...PipelineResourceBindingOp) PipelineRunSpecOp {
 	return func(prs *v1alpha1.PipelineRunSpec) {
-		r := &v1alpha1.PipelineResourceBinding{
+		r := &v1alpha1.ResourceBinding{
 			Name: name,
 			ResourceRef: v1alpha1.PipelineResourceRef{
 				Name: name,
@@ -332,7 +332,7 @@ func PipelineRunResourceBinding(name string, ops ...PipelineResourceBindingOp) P
 
 // PipelineResourceBindingRef set the ResourceRef name to the Resource called Name.
 func PipelineResourceBindingRef(name string) PipelineResourceBindingOp {
-	return func(b *v1alpha1.PipelineResourceBinding) {
+	return func(b *v1alpha1.ResourceBinding) {
 		b.ResourceRef.Name = name
 	}
 }

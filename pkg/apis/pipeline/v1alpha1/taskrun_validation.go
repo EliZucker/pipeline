@@ -98,7 +98,7 @@ func (o TaskRunOutputs) Validate(ctx context.Context, path string) *apis.FieldEr
 //	1. resource is not declared more than once
 //	2. if both resource reference and resource spec is defined at the same time
 //	3. at least resource ref or resource spec is defined
-func validatePipelineResources(ctx context.Context, resources []TaskResourceBinding, path string) *apis.FieldError {
+func validatePipelineResources(ctx context.Context, resources []ResourceBinding, path string) *apis.FieldError {
 	encountered := map[string]struct{}{}
 	for _, r := range resources {
 		// We should provide only one binding for each resource required by the Task.

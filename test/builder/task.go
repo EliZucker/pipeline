@@ -51,8 +51,8 @@ type TaskRunSpecOp func(*v1alpha1.TaskRunSpec)
 // TaskResourceOp is an operation which modify a TaskResource struct.
 type TaskResourceOp func(*v1alpha1.TaskResource)
 
-// TaskResourceBindingOp is an operation which modify a TaskResourceBinding struct.
-type TaskResourceBindingOp func(*v1alpha1.TaskResourceBinding)
+// TaskResourceBindingOp is an operation which modify a ResourceBinding struct.
+type TaskResourceBindingOp func(*v1alpha1.ResourceBinding)
 
 // TaskRunStatusOp is an operation which modify a TaskRunStatus struct.
 type TaskRunStatusOp func(*v1alpha1.TaskRunStatus)
@@ -538,10 +538,10 @@ func TaskRunInputsParam(name, value string, additionalValues ...string) TaskRunI
 }
 
 // TaskRunInputsResource adds a resource, with specified name, to the TaskRunInputs.
-// Any number of TaskResourceBinding modifier can be passed to transform it.
+// Any number of ResourceBinding modifier can be passed to transform it.
 func TaskRunInputsResource(name string, ops ...TaskResourceBindingOp) TaskRunInputsOp {
 	return func(i *v1alpha1.TaskRunInputs) {
-		binding := &v1alpha1.TaskResourceBinding{
+		binding := &v1alpha1.ResourceBinding{
 			Name: name,
 		}
 		for _, op := range ops {
@@ -551,30 +551,30 @@ func TaskRunInputsResource(name string, ops ...TaskResourceBindingOp) TaskRunInp
 	}
 }
 
-// TaskResourceBindingRef set the PipelineResourceRef name to the TaskResourceBinding.
+// TaskResourceBindingRef set the PipelineResourceRef name to the ResourceBinding.
 func TaskResourceBindingRef(name string) TaskResourceBindingOp {
-	return func(b *v1alpha1.TaskResourceBinding) {
+	return func(b *v1alpha1.ResourceBinding) {
 		b.ResourceRef.Name = name
 	}
 }
 
-// TaskResourceBindingResourceSpec set the PipelineResourceResourceSpec to the TaskResourceBinding.
+// TaskResourceBindingResourceSpec set the PipelineResourceResourceSpec to the ResourceBinding.
 func TaskResourceBindingResourceSpec(spec *v1alpha1.PipelineResourceSpec) TaskResourceBindingOp {
-	return func(b *v1alpha1.TaskResourceBinding) {
+	return func(b *v1alpha1.ResourceBinding) {
 		b.ResourceSpec = spec
 	}
 }
 
-// TaskResourceBindingRefAPIVersion set the PipelineResourceRef APIVersion to the TaskResourceBinding.
+// TaskResourceBindingRefAPIVersion set the PipelineResourceRef APIVersion to the ResourceBinding.
 func TaskResourceBindingRefAPIVersion(version string) TaskResourceBindingOp {
-	return func(b *v1alpha1.TaskResourceBinding) {
+	return func(b *v1alpha1.ResourceBinding) {
 		b.ResourceRef.APIVersion = version
 	}
 }
 
-// TaskResourceBindingPaths add any number of path to the TaskResourceBinding.
+// TaskResourceBindingPaths add any number of path to the ResourceBinding.
 func TaskResourceBindingPaths(paths ...string) TaskResourceBindingOp {
-	return func(b *v1alpha1.TaskResourceBinding) {
+	return func(b *v1alpha1.ResourceBinding) {
 		b.Paths = paths
 	}
 }
@@ -591,11 +591,11 @@ func TaskRunOutputs(ops ...TaskRunOutputsOp) TaskRunSpecOp {
 	}
 }
 
-// TaskRunOutputsResource adds a TaskResourceBinding, with specified name, to the TaskRunOutputs.
-// Any number of TaskResourceBinding modifier can be passed to modifiy it.
+// TaskRunOutputsResource adds a ResourceBinding, with specified name, to the TaskRunOutputs.
+// Any number of ResourceBinding modifier can be passed to modifiy it.
 func TaskRunOutputsResource(name string, ops ...TaskResourceBindingOp) TaskRunOutputsOp {
 	return func(i *v1alpha1.TaskRunOutputs) {
-		binding := &v1alpha1.TaskResourceBinding{
+		binding := &v1alpha1.ResourceBinding{
 			Name: name,
 			ResourceRef: v1alpha1.PipelineResourceRef{
 				Name: name,

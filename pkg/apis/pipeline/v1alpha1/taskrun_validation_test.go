@@ -171,7 +171,7 @@ func TestInput_Validate(t *testing.T) {
 			Name:  "name",
 			Value: *builder.ArrayOrString("value"),
 		}},
-		Resources: []v1alpha1.TaskResourceBinding{{
+		Resources: []v1alpha1.ResourceBinding{{
 			ResourceRef: v1alpha1.PipelineResourceRef{
 				Name: "testresource",
 			},
@@ -191,7 +191,7 @@ func TestInput_Invalidate(t *testing.T) {
 	}{{
 		name: "duplicate task inputs",
 		inputs: v1alpha1.TaskRunInputs{
-			Resources: []v1alpha1.TaskResourceBinding{{
+			Resources: []v1alpha1.ResourceBinding{{
 				ResourceRef: v1alpha1.PipelineResourceRef{
 					Name: "testresource1",
 				},
@@ -207,7 +207,7 @@ func TestInput_Invalidate(t *testing.T) {
 	}, {
 		name: "invalid task input params",
 		inputs: v1alpha1.TaskRunInputs{
-			Resources: []v1alpha1.TaskResourceBinding{{
+			Resources: []v1alpha1.ResourceBinding{{
 				ResourceRef: v1alpha1.PipelineResourceRef{
 					Name: "testresource",
 				},
@@ -225,7 +225,7 @@ func TestInput_Invalidate(t *testing.T) {
 	}, {
 		name: "duplicate resource ref and resource spec",
 		inputs: v1alpha1.TaskRunInputs{
-			Resources: []v1alpha1.TaskResourceBinding{{
+			Resources: []v1alpha1.ResourceBinding{{
 				ResourceRef: v1alpha1.PipelineResourceRef{
 					Name: "testresource",
 				},
@@ -239,7 +239,7 @@ func TestInput_Invalidate(t *testing.T) {
 	}, {
 		name: "invalid resource spec",
 		inputs: v1alpha1.TaskRunInputs{
-			Resources: []v1alpha1.TaskResourceBinding{{
+			Resources: []v1alpha1.ResourceBinding{{
 				ResourceSpec: &v1alpha1.PipelineResourceSpec{
 					Type: "non-existent",
 				},
@@ -250,7 +250,7 @@ func TestInput_Invalidate(t *testing.T) {
 	}, {
 		name: "no resource ref and resource spec",
 		inputs: v1alpha1.TaskRunInputs{
-			Resources: []v1alpha1.TaskResourceBinding{{
+			Resources: []v1alpha1.ResourceBinding{{
 				Name: "resource",
 			}},
 		},
@@ -268,7 +268,7 @@ func TestInput_Invalidate(t *testing.T) {
 
 func TestOutput_Validate(t *testing.T) {
 	i := v1alpha1.TaskRunOutputs{
-		Resources: []v1alpha1.TaskResourceBinding{{
+		Resources: []v1alpha1.ResourceBinding{{
 			ResourceRef: v1alpha1.PipelineResourceRef{
 				Name: "testresource",
 			},
@@ -287,7 +287,7 @@ func TestOutput_Invalidate(t *testing.T) {
 	}{{
 		name: "duplicated task outputs",
 		outputs: v1alpha1.TaskRunOutputs{
-			Resources: []v1alpha1.TaskResourceBinding{{
+			Resources: []v1alpha1.ResourceBinding{{
 				ResourceRef: v1alpha1.PipelineResourceRef{
 					Name: "testresource1",
 				},
@@ -303,7 +303,7 @@ func TestOutput_Invalidate(t *testing.T) {
 	}, {
 		name: "no output resource with resource spec nor resource ref",
 		outputs: v1alpha1.TaskRunOutputs{
-			Resources: []v1alpha1.TaskResourceBinding{{
+			Resources: []v1alpha1.ResourceBinding{{
 				Name: "workspace",
 			}},
 		},

@@ -163,7 +163,7 @@ func TestPipelineRun(t *testing.T) {
 				Value: *tb.ArrayOrString("some", "array"),
 			}},
 			Timeout: &metav1.Duration{Duration: 1 * time.Hour},
-			Resources: []v1alpha1.PipelineResourceBinding{{
+			Resources: []v1alpha1.ResourceBinding{{
 				Name: "some-resource",
 				ResourceRef: v1alpha1.PipelineResourceRef{
 					Name: "my-special-resource",

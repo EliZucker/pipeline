@@ -29,7 +29,7 @@ import (
 	"k8s.io/client-go/kubernetes"
 )
 
-func getBoundResource(resourceName string, boundResources []v1alpha1.TaskResourceBinding) (*v1alpha1.TaskResourceBinding, error) {
+func getBoundResource(resourceName string, boundResources []v1alpha1.ResourceBinding) (*v1alpha1.ResourceBinding, error) {
 	for _, br := range boundResources {
 		if br.Name == resourceName {
 			return &br, nil
@@ -128,7 +128,7 @@ func AddInputResource(
 	return taskSpec, nil
 }
 
-func getResource(r *v1alpha1.TaskResourceBinding, getter GetResource) (*v1alpha1.PipelineResource, error) {
+func getResource(r *v1alpha1.ResourceBinding, getter GetResource) (*v1alpha1.PipelineResource, error) {
 	// Check both resource ref or resource Spec are not present. Taskrun webhook should catch this in validation error.
 	if r.ResourceRef.Name != "" && r.ResourceSpec != nil {
 		return nil, xerrors.New("Both ResourseRef and ResourceSpec are defined. Expected only one")
